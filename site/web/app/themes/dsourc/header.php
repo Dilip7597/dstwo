@@ -26,7 +26,7 @@
 
 	<header id="masthead" class="site-header">
 		<div class="container"><!-- header .container -->
-			<div class="row align-items-center"><!-- header .row -->
+			<div class="row fixed-top align-items-center"><!-- header .row -->
 				<div class="col-md-3"> <!-- logo (site branding) .col-md-3 -->
 					<div class="site-branding">
 						<?php

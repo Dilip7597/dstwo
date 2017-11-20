@@ -15,7 +15,6 @@
 get_header(); ?>
 
 	<div class="row"><!-- content > .row -->
-		<div class="col-md-9"><!-- #primary .col-md-9 --> 
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main">
 
@@ -52,7 +51,6 @@ get_header(); ?>
 
 				</main><!-- #main -->
 			</div><!-- #primary -->
-		</div><!-- #primary .col-md-9 -->
 	</div><!-- content > .row -->
 <?php
 get_footer();

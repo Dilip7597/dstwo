@@ -13,18 +13,33 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'dsourc' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'dsourc' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'dsourc' ), 'dsourc', '<a href="http://www.dsourc.com/">Dilip Gupta</a>' );
-			?>
-		</div><!-- .site-info -->
+	<footer id="colophon" class="site-footer footer section-dark">
+	
+		<div class="container">
+			<div class="row">
+				<nav class="footer-nav">
+					<?php
+						/*wp_nav_menu( array(
+							'theme_location'  => 'footerbar',
+						) );*/
+					?>
+					<ul>
+						<li><a href="https://dsourc.com">Order Now</a></li>
+						<li><a href="https://dsourc.com/services">Services</a></li>
+						<li><a href="https://dsour.com/contact-us">Contact Us</a></li>
+					</ul>
+				</nav>
+				<div class="credits ml-auto">
+					<span class="copyright">
+						© <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i>
+						<?php
+						/* translators: 1: Theme name, 2: Theme author. */
+							printf( esc_html__( ' by %1$s.', 'dsourc' ), '<a href="http://www.dsourc.com/">Dsourc</a>' );
+						?>
+					</span>
+				</div>
+			</div>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

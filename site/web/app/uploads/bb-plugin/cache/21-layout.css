@@ -1817,7 +1817,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 			margin: auto;
  			 		}
@@ -2035,7 +2035,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 			margin: auto;
  			 		}
@@ -2133,7 +2133,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 			margin: auto;
  			 		}
@@ -3283,7 +3283,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 			margin: auto;
  			 		}
@@ -4732,6 +4732,7 @@ a.uabb-creative-threed-btn.uabb-animate_right-btn {
 	
 	
 	
+		text-transform: none;
 	}
 
 .uabb-dual-button .uabb-btn,
@@ -4742,6 +4743,7 @@ a.uabb-creative-threed-btn.uabb-animate_right-btn {
 	
 	
 	
+		text-transform: none;
 	}
 
 

@@ -1548,7 +1548,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 			margin: auto;
  			 		}
@@ -1738,7 +1738,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 		}
  			 		.fl-node-59c22b065f856 .uabb-info-list-content-wrapper.left .info-list-content-dynamic0 {
@@ -1795,7 +1795,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 		}
  			 		.fl-node-59c237137bf7b .uabb-info-list-content-wrapper.left .info-list-content-dynamic0 {
@@ -1881,7 +1881,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 		}
  			 		.fl-node-59c23644748d1 .uabb-info-list-content-wrapper.left .info-list-content-dynamic0 {
@@ -1937,7 +1937,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 		}
  			 		.fl-node-59c2367c44c80 .uabb-info-list-content-wrapper.left .info-list-content-dynamic0 {
@@ -2014,7 +2014,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 		}
  			 		.fl-node-59c2370eb6aa6 .uabb-info-list-content-wrapper.left .info-list-content-dynamic0 {
@@ -2087,7 +2087,7 @@ img.mfp-img {
  			width: 0px;
  			height: 0px;
  						 			
-			background: #4064d7;
+			background: #f7b91a;
 			
  			 			 		}
  			 		.fl-node-59c237b2e01ee .uabb-info-list-content-wrapper.left .info-list-content-dynamic0 {
@@ -3400,6 +3400,7 @@ a.uabb-creative-threed-btn.uabb-animate_right-btn {
 	
 	
 	
+		text-transform: none;
 	}
 
 .uabb-dual-button .uabb-btn,
@@ -3410,6 +3411,7 @@ a.uabb-creative-threed-btn.uabb-animate_right-btn {
 	
 	
 	
+		text-transform: none;
 	}
 
 

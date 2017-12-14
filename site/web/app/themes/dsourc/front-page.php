@@ -22,15 +22,8 @@ get_header(); ?>
 					<div class="container">
 						<div class="title-brand">
 							<h1 class="presentation-title">Ecommerce Specialist</h1>
-							<div class="fog-low">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/img/fog-low.png" alt="">
-							</div>
-							<div class="fog-low right">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/img/fog-low.png" alt="">
-							</div>
 						</div>
-
-						<h2 class="presentation-subtitle text-center">Order Now to get your dynamic online store.</h2>
+						<h2 class="presentation-subtitle text-center">Fast, Secure, Scalable ecommerce store by Wordpress and Magento.</h2>
 					</div>
 				</div>
 		        <div class="moving-clouds" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/clouds.png'); ">

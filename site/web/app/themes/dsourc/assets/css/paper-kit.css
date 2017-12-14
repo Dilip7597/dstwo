@@ -4818,7 +4818,7 @@ textarea.form-control {
   margin-top: 10px; }
 
 .title-brand {
-  max-width: 730px;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
   text-align: center;
@@ -4836,7 +4836,7 @@ textarea.form-control {
     right: -15px; }
 
 .presentation-title {
-  font-size: 8em;
+  font-size: 7em;
   font-weight: 700;
   margin: 0;
   color: #FFFFFF;

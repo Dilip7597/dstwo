@@ -21,12 +21,6 @@ get_header(); ?>
 			<div class="container">
 				<div class="title-brand">
 					<?php the_title( '<h1 class="entry-title presentation-title">', '</h1>' ); ?>
-					<div class="fog-low">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/fog-low.png" alt="">
-					</div>
-					<div class="fog-low right">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/fog-low.png" alt="">
-					</div>
 				</div>
 			</div>
 		</div>

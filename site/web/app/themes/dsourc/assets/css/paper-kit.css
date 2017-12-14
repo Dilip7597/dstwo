@@ -1421,7 +1421,7 @@ textarea.form-control {
   border-bottom-color: #fff !important; }
 
 .section {
-  padding: 70px 0;
+  padding: 35px 0;
   position: relative;
   background-color: #FFFFFF; }
 
@@ -2739,8 +2739,8 @@ textarea.form-control {
   .card-just-text .dropdown .dropdown-menu:before,
   .dropdown-btn .dropdown-menu:before {
     border-bottom: 11px solid #F1EAE0;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
+    border-left: 11px solid rgba(0, 0, 0, 0);
+    border-right: 11px solid rgba(0, 0, 0, 0);
     content: "";
     display: inline-block;
     position: absolute;
@@ -2757,8 +2757,8 @@ textarea.form-control {
   .card-just-text .dropdown .dropdown-menu:after,
   .dropdown-btn .dropdown-menu:after {
     border-bottom: 11px solid #FFFFFF;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
+    border-left: 11px solid rgba(0, 0, 0, 0);
+    border-right: 11px solid rgba(0, 0, 0, 0);
     content: "";
     display: inline-block;
     position: absolute;
@@ -3045,8 +3045,8 @@ textarea.form-control {
       .nav-tabs .nav-item .nav-link.active:hover:after,
       .nav-tabs .nav-item .nav-link.active:focus:after {
         border-bottom: 11px solid #FFFFFF;
-        border-left: 11px solid transparent;
-        border-right: 11px solid transparent;
+        border-left: 11px solid rgba(0, 0, 0, 0);
+        border-right: 11px solid rgba(0, 0, 0, 0);
         content: "";
         display: inline-block;
         position: absolute;
@@ -3056,8 +3056,8 @@ textarea.form-control {
       .nav-tabs .nav-item .nav-link.active:hover:before,
       .nav-tabs .nav-item .nav-link.active:focus:before {
         border-bottom: 11px solid #F1EAE0;
-        border-left: 11px solid transparent;
-        border-right: 11px solid transparent;
+        border-left: 11px solid rgba(0, 0, 0, 0);
+        border-right: 11px solid rgba(0, 0, 0, 0);
         content: "";
         display: inline-block;
         position: absolute;
@@ -3075,8 +3075,8 @@ textarea.form-control {
       background-color: #68B3C8; }
     .nav-tabs .dropdown-menu :before {
       border-bottom: 11px solid #F1EAE0;
-      border-left: 11px solid transparent;
-      border-right: 11px solid transparent;
+      border-left: 11px solid rgba(0, 0, 0, 0);
+      border-right: 11px solid rgba(0, 0, 0, 0);
       content: "";
       display: inline-block;
       position: absolute;
@@ -3084,8 +3084,8 @@ textarea.form-control {
       top: -11px; }
       .nav-tabs .dropdown-menu :before :after {
         border-bottom: 11px solid #FFFCF5;
-        border-left: 11px solid transparent;
-        border-right: 11px solid transparent;
+        border-left: 11px solid rgba(0, 0, 0, 0);
+        border-right: 11px solid rgba(0, 0, 0, 0);
         content: "";
         display: inline-block;
         position: absolute;
@@ -3981,7 +3981,7 @@ textarea.form-control {
       width: 100%;
       position: absolute;
       background-color: #FFFCF5;
-      background-image: linear-gradient(to bottom, transparent 0%, rgba(112, 112, 112, 0) 60%, rgba(186, 186, 186, 0.15) 100%);
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(112, 112, 112, 0) 60%, rgba(186, 186, 186, 0.15) 100%);
       display: block;
       content: "";
       z-index: 1; }
@@ -4149,7 +4149,7 @@ textarea.form-control {
       width: 100%;
       position: absolute;
       background-color: #FFFCF5;
-      background-image: linear-gradient(to bottom, transparent 0%, rgba(112, 112, 112, 0) 60%, rgba(186, 186, 186, 0.15) 100%);
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(112, 112, 112, 0) 60%, rgba(186, 186, 186, 0.15) 100%);
       display: block;
       content: "";
       z-index: 1; }

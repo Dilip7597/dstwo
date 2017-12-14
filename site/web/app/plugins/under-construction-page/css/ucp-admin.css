@@ -1,7 +1,7 @@
 /*
  * UnderConstructionPage
  * Main backend CSS
- * (c) Web factory Ltd, 2015 - 2017
+ * (c) Web factory Ltd, 2015 - 2018
  */
 
 @import url('//fonts.googleapis.com/css?family=Roboto:900');
@@ -80,7 +80,11 @@ a.reset-settings.button:hover {
   display: inherit;
 }
 
-.settings_page_ucp h1:hover img {
+.settings_page_ucp h1 .ucp-logo-text {
+  max-height: 17px;
+}
+
+.settings_page_ucp h1:hover img.rotate {
    transform: rotate(360deg);
 }
 
@@ -96,7 +100,7 @@ a.reset-settings.button:hover {
   max-width: 300px;
 }
 
-div.ucp-thumb, .ucp-thumb-special {
+div.ucp-thumb, div.ucp-thumb-special {
   max-width: 300px;
   width: calc(31% - 20px);
   margin: 0 10px 5px 0;
@@ -110,7 +114,7 @@ div.ucp-thumb.active {
   border: 2px solid rgba(255, 121, 0, 0.7);
 }
 
-div.ucp-thumb:hover {
+div.ucp-thumb:hover, div.ucp-thumb-special:hover {
   border: 2px solid rgba(255, 121, 0, 0.7);
   cursor: pointer;
 }
@@ -120,8 +124,9 @@ div.ucp-thumb.active span {
 }
 
 div.ucp-thumb img, .ucp-thumb-special img {
-	margin-bottom: 6px;
+  margin-bottom: 6px;
   max-width: 100%;
+  border: thin solid rgba(0, 0, 0, 0.35);
 }
 
 .ucp-list {
@@ -626,9 +631,7 @@ h3.ucp-pro-logo {
 }
 
 h3.ucp-pro-logo img {
-  height: 40px;
-  margin-right: 10px;
-  margin-bottom: -2px;
+  height: 64px;
 }
 
 h3.ucp-pro-logo span {

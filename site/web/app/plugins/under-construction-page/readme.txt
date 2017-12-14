@@ -3,8 +3,8 @@ Contributors: WebFactory, UnderConstructionPage
 Tags: maintenance mode, maintenance page, coming soon page, landing page, under construction
 Requires at least: 4.0
 Requires PHP: 5.2
-Tested up to: 4.8
-Stable tag: 2.70
+Tested up to: 4.9
+Stable tag: 2.80
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,8 @@ The fastest & simplest Under Construction Page, Landing Page, Maintenance Mode &
 Create an Under Construction Page, Maintenance Mode Page or a Landing Page that takes **less than a minute to install & configure**. This plugin won't waste your time! UCP is simple, fast, efficient & user-friendly with <a href="https://underconstructionpage.com/">great designs</a>.
 
 [youtube https://www.youtube.com/watch?v=fqqWrQENSDc]
+
+> > **PRO** version offers more than 100 extra features and options including the drag&drop builder, 300,000+ searchable images, 100+ templates, affiliate&traffic tracking, advanced access control, MailChimp, Zapier & universal autoresponder integration, and priority USA based support. Find out more on the <a href="https://underconstructionpage.com/">official plugin site</a>.
 
 A simple, no-nonsense plugin for all those situations when you have to hide the site behind an Under Construction page for a while. Live examples are available on the <a href="https://underconstructionpage.com/" rel="friend">Under Construction website</a>. Give us a shout on Twitter <a href="http://twitter.com/WebFactoryLtd">@WebFactoryLtd</a> or check out the <a href="https://youtu.be/fqqWrQENSDc">video</a>.
 
@@ -112,14 +114,28 @@ Or if needed, upload manually;
 25. Stop theme
 26. Clock theme
 27. Bulldozer theme
-28. Main settings
-29. Design settings
-30. Content settings
-31. Access settings
-32. Support
+28. Christmas theme
+29. Main settings
+30. Design settings
+31. Content settings
+32. Access settings
+33. Support
 
 
 == Changelog ==
+
+= 2.80 =
+* 2017/12/05
+* translation efforts are still in full swing
+* new theme - Christmas
+* minor changes
+* we crossed the 890k downloads mark
+
+= 2.75 =
+* 2017/11/22
+* translation efforts are in full swing
+* PRO version is available
+* new logo
 
 = 2.70 =
 * 2017/11/06

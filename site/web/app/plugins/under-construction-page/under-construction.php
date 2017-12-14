@@ -2,14 +2,14 @@
 /*
   Plugin Name: Under Construction
   Plugin URI: https://underconstructionpage.com/
-  Description: Put your site behind a great looking under construction page while you do maintenance work.
+  Description: Put your site behind a great looking under construction, coming soon, maintenance mode or landing page.
   Author: Web factory Ltd
-  Version: 2.70
+  Version: 2.80
   Author URI: http://www.webfactoryltd.com/
   Text Domain: under-construction-page
   Domain Path: lang
 
-  Copyright 2015 - 2017  Web factory Ltd  (email: ucp@webfactoryltd.com)
+  Copyright 2015 - 2018  Web factory Ltd  (email: ucp@webfactoryltd.com)
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License, version 2, as
@@ -318,6 +318,20 @@ class UCP {
       wp_enqueue_script('ucp-select2', UCP_PLUGIN_URL . 'js/select2.min.js', array(), self::$version, true);
       wp_enqueue_script('ucp-admin', UCP_PLUGIN_URL . 'js/ucp-admin.js', array('jquery'), self::$version, true);
       wp_localize_script('ucp-admin', 'ucp', $js_localize);
+      
+      // fix for agressive plugins
+      wp_dequeue_style('uiStyleSheet');
+      wp_dequeue_style('wpcufpnAdmin' );
+      wp_dequeue_style('unifStyleSheet' );
+      wp_dequeue_style('wpcufpn_codemirror');
+      wp_dequeue_style('wpcufpn_codemirrorTheme');
+      wp_dequeue_style('collapse-admin-css');
+      wp_dequeue_style('jquery-ui-css');
+      wp_dequeue_style('tribe-common-admin');
+      wp_dequeue_style('file-manager__jquery-ui-css');
+      wp_dequeue_style('file-manager__jquery-ui-css-theme');
+      wp_dequeue_style('wpmegmaps-jqueryui');
+      wp_dequeue_style('wp-botwatch-css');
     }
 
     if ('plugins.php' == $hook) {
@@ -394,6 +408,7 @@ class UCP {
       $body .= "\r\n\r\nSite details:\r\n";
       $body .= '  WordPress version: ' . get_bloginfo('version') . "\r\n";
       $body .= '  UCP version: ' . self::$version . "\r\n";
+      $body .= '  PHP version: ' . PHP_VERSION . "\r\n";
       $body .= '  Site URL: ' . get_bloginfo('url') . "\r\n";
       $body .= '  WordPress URL: ' . get_bloginfo('wpurl') . "\r\n";
       $body .= '  Theme: ' . $theme->get('Name') . ' v' . $theme->get('Version') . "\r\n";
@@ -619,6 +634,7 @@ class UCP {
   static function generate_footer($options, $template_id) {
     $out = '';
 
+    // todo translate
     if ($options['linkback'] == '1') {
       $tmp = md5(get_site_url());
       if ($tmp[0] < '4') {
@@ -755,10 +771,11 @@ class UCP {
     $current_user = wp_get_current_user();
     
     $name = '';
-    if(!empty($current_user->user_firstname)) {
+    if (!empty($current_user->user_firstname)) {
       $name = ' ' . $current_user->user_firstname;
     }
 
+    // todo translate
     if (empty($notices['dismiss_rate']) &&
         (time() - $meta['first_install']) > (DAY_IN_SECONDS * 1.0)) {
       $rate_url = 'https://wordpress.org/support/plugin/under-construction-page/reviews/?filter=5&rate=5#new-post';
@@ -920,9 +937,14 @@ class UCP {
   // add settings link to plugins page
   static function plugin_action_links($links) {
     $settings_link = '<a href="' . admin_url('options-general.php?page=ucp') . '" title="' . __('UnderConstruction Settings', 'under-construction-page') . '">' . __('Settings', 'under-construction-page') . '</a>';
+    $pro_link = '<a target="_blank" href="' . self::generate_web_link('plugins-table-left') . '" title="' . __('Get PRO', 'under-construction-page') . '">' . __('Go <b>PRO</b>', 'under-construction-page') . '</a>';
+    
+    array_unshift($links, $pro_link);
     array_unshift($links, $settings_link);
     
-    $links['deactivate'] = str_replace('href=',' data-under-construction-page="true" href=', $links['deactivate']);
+    if (!empty($links['deactivate'])) {
+      $links['deactivate'] = str_replace('href=',' data-under-construction-page="true" href=', $links['deactivate']);
+    }
 
     return $links;
   } // plugin_action_links
@@ -931,9 +953,12 @@ class UCP {
   // add links to plugin's description in plugins table
   static function plugin_meta_links($links, $file) {
     $support_link = '<a target="_blank" href="https://wordpress.org/support/plugin/under-construction-page" title="' . __('Get help', 'under-construction-page') . '">' . __('Support', 'under-construction-page') . '</a>';
+    $pro_link = '<a target="_blank" href="' . self::generate_web_link('plugins-table-right') . '" title="' . __('Get PRO', 'under-construction-page') . '">' . __('Get the <b>PRO</b> version', 'under-construction-page') . '</a>';
+    
 
     if ($file == plugin_basename(__FILE__)) {
       $links[] = $support_link;
+      $links[] = $pro_link;
     }
 
     return $links;
@@ -946,7 +971,7 @@ class UCP {
       return $text;
     }
 
-    $text = '<i><a href="https://underconstructionpage.com/" title="' . __('Visit UCP\'s site for more info', 'under-construction-page') . '" target="_blank">UnderConstructionPage</a> v' . self::$version . ' by <a href="https://www.webfactoryltd.com/" title="' . __('Visit our site to get more great plugins', 'under-construction-page') . '" target="_blank">WebFactory Ltd</a>.</i> '. $text;
+    $text = '<i><a href="https://underconstructionpage.com/" title="' . __('Visit UCP\'s site for more info', 'under-construction-page') . '" target="_blank">' . __('UnderConstructionPage', 'under-construction-page') . '</a> v' . self::$version . ' by <a href="https://www.webfactoryltd.com/" title="' . __('Visit our site to get more great plugins', 'under-construction-page') . '" target="_blank">' . __('WebFactory Ltd', 'under-construction-page') . '</a>.</i> '. $text;
 
     return $text;
   } // admin_footer_text
@@ -966,7 +991,7 @@ class UCP {
 
   // create the admin menu item
   static function admin_menu() {
-    add_options_page('UnderConstruction', 'UnderConstruction', 'manage_options', 'ucp', array(__CLASS__, 'main_page'));
+    add_options_page(__('UnderConstruction', 'under-construction-page'), __('UnderConstruction', 'under-construction-page'), 'manage_options', 'ucp', array(__CLASS__, 'main_page'));
   } // admin_menu
 
 
@@ -1079,10 +1104,6 @@ class UCP {
       if (function_exists('w3tc_pgcache_flush')) {
         w3tc_pgcache_flush();
       }
-      if (function_exists('wp_cache_clean_cache')) {
-        global $file_prefix;
-        wp_cache_clean_cache($file_prefix);
-      }
       if (function_exists('wp_cache_clear_cache')) {
         wp_cache_clear_cache();
       }
@@ -1160,8 +1181,29 @@ class UCP {
       return $out;
     }
   } // create_select_options
+  
+  
+  // helper function to generate tagged buy links
+  static function generate_web_link($placement = '', $page = '/', $params = array(), $anchor = '') {
+    $base_url = 'https://underconstructionpage.com';
+    
+    if ('/' != $page) {
+      $page = '/' . trim($page, '/') . '/';  
+    }
+    
+    $parts = array_merge(array('utm_source' => 'ucp-free', 'utm_medium' => 'plugin', 'utm_content' => $placement, 'utm_campaign' => 'ucp-free-v' . self::$version), $params);
+    
+    if (!empty($anchor)) {
+      $anchor = '#' . trim($anchor, '#');
+    }
+    
+    $out = $base_url . $page . '?' . http_build_query($parts, '', '&amp;') . $anchor;
+    
+    return $out;
+  } // generate_web_link
 
 
+  // first, main tab content
   static function tab_main() {
     $options = self::get_options();
     $default_options = self::default_options();
@@ -1173,7 +1215,7 @@ class UCP {
     <th scope="row"><label for="status">' . __('Under Construction Mode', 'under-construction-page') . '</label></th>
     <td>';
     
-    echo '<div class="toggle-wrapper">
+    echo '<div class="toggle-wrapper" id="main-status">
       <input type="checkbox" id="status" ' . self::checked(1, $options['status']) . ' type="checkbox" value="1" name="' . UCP_OPTIONS_KEY . '[status]">
       <label for="status" class="toggle"><span class="toggle_handler"></span></label>
     </div>';
@@ -1208,7 +1250,7 @@ class UCP {
     echo '<tr valign="top">
     <th scope="row"><label for="">' . __('Reset Settings', 'under-construction-page') . '</label></th>
     <td>';
-    echo '<a href="' . $reset_url . '" class="button button-secondary reset-settings">Reset all settings to default values</a>';
+    echo '<a href="' . $reset_url . '" class="button button-secondary reset-settings">' . __('Reset all settings to default values', 'under-construction-page') . '</a>';
     echo '<p class="description">' . __('By resetting all settings to their default values any customizations you have done will be lost. There is no undo.', 'under-construction-page') . '</p>';
     echo '</td></tr>';
 
@@ -1226,6 +1268,7 @@ class UCP {
     echo '<div class="ucp-tab-content">';
     echo '<table class="form-table">';
 
+    // todo translate
     echo '<tr valign="top">
     <th scope="row"><label for="title">' . __('Title', 'under-construction-page') . '</label></th>
     <td><input type="text" id="title" class="regular-text" name="' . UCP_OPTIONS_KEY . '[title]" value="' . esc_attr($options['title']) . '" />';
@@ -1393,7 +1436,8 @@ class UCP {
 
 
   static function get_themes() {
-    $themes = array('mad_designer' => __('Mad Designer', 'under-construction-page'),
+    $themes = array('christmas' => __('Christmas Greetings', 'under-construction-page'),
+                    'mad_designer' => __('Mad Designer', 'under-construction-page'),
                     'plain_text' => __('Plain Text', 'under-construction-page'),
                     'under_construction' => __('Under Construction', 'under-construction-page'),
                     'dark' => __('Things Went Dark', 'under-construction-page'),
@@ -1420,6 +1464,7 @@ class UCP {
                     'stop' => __('Stop', 'under-construction-page'),
                     'clock' => __('Clock', 'under-construction-page'),
                     'bulldozer' => __('Bulldozer at Work', 'under-construction-page'));
+                    
     $themes = apply_filters('ucp_themes', $themes);
 
     return $themes;
@@ -1438,28 +1483,16 @@ class UCP {
     <td colspan="2"><b style="margin-bottom: 10px; display: inline-block;">' . __('Theme', 'under-construction-page') . '</b><br>';
     echo '<input type="hidden" id="theme_id" name="' . UCP_OPTIONS_KEY . '[theme]" value="' . $options['theme'] . '">';
 
+    echo '<div class="ucp-thumb-special"><a href="' . self::generate_web_link('thumb-build-theme') . '" target="_blank"><img src="' . $img_path . 'more_coming_soon.png" alt="' . __('Build your own custom theme with our drag & drop editor', 'under-construction-page') . '" title="' . __('Build your own custom theme with our drag & drop editor', 'under-construction-page') . '"></a><span>' . __('Build your own custom theme', 'under-construction-page') . '</span></div>';
+    
     foreach ($themes as $theme_id => $theme_name) {
       if ($theme_id === $options['theme']) {
         $class = ' active';
       } else {
         $class = '';
       }
-      echo '<div class="ucp-thumb' . $class . '" data-theme-id="' . $theme_id . '"><img src="' . $img_path . $theme_id . '.png" alt="' . $theme_name . '" title="' . $theme_name . '" /><span>' . $theme_name . '</span></div>';
-    }
-
-    $tmp = md5(get_site_url());
-    if ($tmp[0] < '6') {
-      $tweet = 'I need more themes for the free Under Construction #wordpress plugin. When are they coming out? @webfactoryltd';
-      $url = 'https://wordpress.org/plugins/under-construction-page/';
-    } elseif ($tmp[0] < 'a') {
-      $tweet = 'I need more themes for the free Under Construction Page #wordpress plugin. When are they coming out? @webfactoryltd';
-      $url = 'https://underconstructionpage.com/';
-    } else {
-      $tweet = 'When will you make more themes for the free Under Construction Page plugin for #wordpress? @webfactoryltd';
-      $url = 'https://underconstructionpage.com/';
-    }
-
-    echo '<div class="ucp-thumb-special"><a href="https://twitter.com/intent/tweet?url=' . $url . '&text=' . urlencode($tweet) . '" target="_blank"><img src="' . $img_path . 'more_coming_soon.png" alt="Need more themes?" title="Need more themes?" /></a><br />Click for More Themes</div>';
+      echo '<div class="ucp-thumb' . $class . '" data-theme-id="' . $theme_id . '"><img src="' . $img_path . $theme_id . '.png" alt="' . $theme_name . '" title="' . $theme_name . '"><span>' . $theme_name . '</span></div>';
+    } // foreach
 
     echo '</td></tr>';
 
@@ -1497,6 +1530,12 @@ class UCP {
     echo '<div class="ucp-tab-content">';
     echo '<table class="form-table">';
 
+    echo '<tr valign="top">
+    <th scope="row">' . __('Whitelisted IP Addresses', 'under-construction-page') . '</th>
+    <td>';
+    echo 'Whitelisting users by IP address, enabling UCP only on certain pages, expiring direct access links, and many more features are available in <a href="' . self::generate_web_link('access-whitelisted-ip') . '" target="_blank">UnderConstructionPage PRO</a>.';
+    echo '<td></tr>';
+    
     echo '<tr valign="top" id="whitelisted-roles">
     <th scope="row">' . __('Whitelisted User Roles', 'under-construction-page') . '</th>
     <td>';
@@ -1536,7 +1575,7 @@ class UCP {
     
     echo '<div style="display: none;" id="tab_support_faq" class="ucp-tab-content">';
     
-    echo '<p><b>Do you have a video to help me get started?</b><br>We sure do! <a href="https://www.youtube.com/watch?v=RN4XABhK7_w" target="_blank">Getting started with the UnderConstructionPage plugin</a>. If that doesn\'t help don\'t hesitate to contact our friendly support.</p>';
+    echo '<p><b>Do you have a video to help me get started?</b><br>We sure do! <a href="https://www.youtube.com/watch?v=RN4XABhK7_w" target="_blank">Getting started with the UnderConstructionPage plugin</a>. If that doesn\'t help we also have an <a href="https://www.youtube.com/watch?v=K3DF-NP6Fog" target="_blank">in-depth video walktrough</a>. In case you\'re still uncertain about something don\'t hesitate to contact our friendly support.</p>';
     
     echo '<p><b>How can I check if construction mode is really enabled on my site?</b><br>If the under construction status is green in the admin bar (the very top of the page, above this text), then it\'s enabled. But we made a tool specifically for these kinds of situations so you can double-check everything. <a href="https://underconstructionpage.com/under-construction-tester/?url=' . urlencode(get_home_url()) . '" target="_blank">Run under construction mode tester</a>.</p>';
     
@@ -1593,6 +1632,7 @@ class UCP {
     echo '<p class="description">Our support agents need this info to provide faster &amp; better support. The following data will be added to your message;</p>';
     echo '<p>WordPress version: <code>' . get_bloginfo('version') . '</code><br>';
     echo 'UCP Version: <code>' . self::$version . '</code><br>';
+    echo 'PHP Version: <code>' . PHP_VERSION . '</code><br>';
     echo 'Site URL: <code>' . get_bloginfo('url') . '</code><br>';
     echo 'WordPress URL: <code>' . get_bloginfo('wpurl') . '</code><br>';
     echo 'Theme: <code>' . $theme->get('Name') . ' v' . $theme->get('Version') . '</code><br>';
@@ -1612,10 +1652,10 @@ class UCP {
     $user = wp_get_current_user();
     
     echo '<div class="ucp-tab-content">';
-    echo '<h3 class="ucp-pro-logo"><img src="' . UCP_PLUGIN_URL . 'images/ucp_pro_logo.png" alt="UnderConstructionPage PRO" title="UnderConstructionPage">UnderConstructionPage<span>pro</span></h3>';
+    echo '<h3 class="ucp-pro-logo"><a href="' . self::generate_web_link('pro-tab-logo') . '" target="_blank"><img src="' . UCP_PLUGIN_URL . 'images/ucp_pro_logo.png" alt="UnderConstructionPage PRO" title="UnderConstructionPage"></a></h3>';
         
-    echo '<div id="ucp-earlybird"><span>Build <b>landing pages, coming soon pages, maintenance &amp; under construction pages</b> faster &amp; easier!<br>UCP PRO comes out on Black Friday. Get on the earlybird list - <b>get it cheaper &amp; a week before others</b>.</span>';
-    echo '<p><input value="" type="email" placeholder="Your best email address" class="skip-save regular-text" id="ucp-earlybird-email"> <select id="ucp-earlybird-type"><option value="0">- How do you use UCP? Please select -</option><option value="solo-use">I use it only on one site</option><option value="multi-site">I use it on multiple sites I own</option><option value="webmaster">I use it on multiple sites I build/maintain for others</option></select> <a href="#" class="button button-primary button-large" id="ucp-earlybird-submit">I want the discount! Put me on the Earlybird List!</a></p>';
+    echo '<div id="ucp-earlybird"><span>Build <b>landing pages, coming soon pages, maintenance &amp; under construction pages</b> faster &amp; easier!</span>';
+    echo '<p class="textcenter"><a target="_blank" href="' . self::generate_web_link('pro-tab-20-discount', '', array('coupon' => 'welcome')) . '" class="button button-primary button-large">Get <b>PRO</b> now with a special <b>20% discount</b>!</a></p>';
     echo '</div>';
     
     echo '<h3 class="ucp-small-title">Some of the features available in the PRO version</h3>';
@@ -1709,7 +1749,7 @@ class UCP {
     $default_options = self::default_options();
     
     echo '<div class="wrap">
-          <h1 class="ucp-logo"><a href="' . admin_url('options-general.php?page=ucp') . '"><img src="' . UCP_PLUGIN_URL . 'images/ucp_logo.png" alt="UnderConstructionPage" title="UnderConstructionPage">UnderConstructionPage</a></h1>';
+          <h1 class="ucp-logo"><a href="' . admin_url('options-general.php?page=ucp') . '"><img src="' . UCP_PLUGIN_URL . 'images/ucp_logo.png" class="rotate" alt="UnderConstructionPage" title="UnderConstructionPage"><img src="' . UCP_PLUGIN_URL . 'images/ucp_logo_2.png" class="ucp-logo-text" alt="UnderConstructionPage" title="UnderConstructionPage"></a></h1>';
 
     echo '<form action="options.php" method="post" id="ucp_form">';
     settings_fields(UCP_OPTIONS_KEY);
@@ -1795,34 +1835,34 @@ class UCP {
     echo '<div id="ucp-deactivate-survey" style="display: none;" title="Please help us make UCP better"><span class="ui-helper-hidden-accessible"><input type="text"/></span>';
     
     echo '<div class="question-wrapper-assistance" data-value="urgent">' .
-         '<div class="question"><b>Something\'s not working? We offer URGENT assistance!</b><br><a href="' . $support_link . '" class="button">Send a priority ticket to our friendly support agents</a><br><small><i>average response time is under 10 minutes</i></small></div>' . '</div>';
+         '<div class="question"><b>Something\'s not working? We offer URGENT assistance!</b><br><a href="' . $support_link . '" class="button">Send a priority ticket to our friendly support agents</a><br><small><i>average response time is under 20 minutes</i></small></div>' . '</div>';
          
     echo '<p class="textcenter"><br>We want to improve! Please tell us:<br><b>Why are you deactivating <span class="ucp-logo">UnderConstructionPage</span>?</b></p>';
     
     $questions = array();
     $questions[] = '<div class="question-wrapper" data-value="temporary">' .
-                   '<div class="question">It\'s a temporary deactivation. I\'m debugging something.</div>' .
+                   '<div class="question">It\'s a temporary deactivation, I\'m debugging something</div>' .
                    '</div>';
 
     $questions[] = '<div class="question-wrapper" data-value="not-working">' .
-                   '<div class="question">Plugin is not working.<div class="details">Please tell us what exactly is not working: <input type="text" class="normal-text ucp-deactivation-details"></div></div>' .
+                   '<div class="question">Plugin is not working<div class="details">Please tell us what exactly is not working: <input type="text" class="normal-text ucp-deactivation-details"></div></div>' .
                    '</div>';
 
     $questions[] = '<div class="question-wrapper" data-value="wrong-plugin">' .
-                   '<div class="question">Plugin is not what I thought it is. I need a different plugin.</div>' .
+                   '<div class="question">Plugin is not what I thought it is, I need a different plugin</div>' .
                    '</div>';
 
     $questions[] = '<div class="question-wrapper" data-value="site-live">' .
-                   '<div class="question">It served its purpose - site is now live.</div>' .
+                   '<div class="question">It served its purpose - site is now live</div>' .
                    '</div>';
     
     $questions[] = '<div class="question-wrapper" data-value="missing-feature">' .
-                   '<div class="question">It doesn\'t have all the features I need.<div class="details">Please tell us what features are missing: <input type="text" class="normal-text ucp-deactivation-details"></div></div>' .
+                   '<div class="question">It doesn\'t have all the features I need<div class="details">Please tell us what features are missing: <input type="text" class="normal-text ucp-deactivation-details"></div></div>' .
                    '</div>';
 
     shuffle($questions);
     $questions[] = '<div class="question-wrapper" data-value="other">' .
-                   '<div class="question">Something else.<div class="details">Please tell us the reason: <input type="text" class="normal-text ucp-deactivation-details"></div></div>' .
+                   '<div class="question">Something else<div class="details">Please tell us the reason: <input type="text" class="normal-text ucp-deactivation-details"></div></div>' .
                    '</div>';
     echo implode(' ', $questions);
     
@@ -1842,7 +1882,7 @@ class UCP {
     $pointers = array();
     
     $pointers['welcome'] = array('target' => '#menu-settings', 'edge' => 'left', 'align' => 'right', 'content' => 'Thank you for installing the <b style="font-weight: 800; font-variant: small-caps;">UnderConstructionPage</b> plugin! Please open <a href="' . admin_url('options-general.php?page=ucp'). '">Settings - UnderConstruction</a> to create a beautiful under construction page.');
-    $pointers['getting_started'] = array('target' => '#ucp_tabs #ui-id-1', 'edge' => 'left', 'align' => 'right', 'content' => 'Watch the short <a href="https://www.youtube.com/watch?v=RN4XABhK7_w" target="_blank">Getting Started Video</a> to get you up to speed with UCP in no time. If you need the video later, link is in the <a href="#" class="change_tab" data-tab="4">FAQ</a>.');
+    $pointers['getting_started'] = array('target' => '.ucp-main-tab li:nth-child(2)', 'edge' => 'top', 'align' => 'left', 'content' => 'Watch the short <a href="https://www.youtube.com/watch?v=RN4XABhK7_w" target="_blank">getting started video</a> to get you up to speed with UCP in no time. If that doesn\'t answer your questions watch the longer <a href="https://www.youtube.com/watch?v=K3DF-NP6Fog" target="_blank">in-depth video walktrough</a>.<br>If you need the videos later, links are in the <a href="#" class="change_tab" data-tab="4">FAQ</a>.');
 
     update_option(UCP_POINTERS_KEY, $pointers);
   } // reset_pointers

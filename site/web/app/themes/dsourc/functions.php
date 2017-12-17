@@ -191,3 +191,8 @@ if ( class_exists( 'WooCommerce' ) ) {
  * Custom Navigation Walker
  */
 require get_template_directory() . '/inc/wp-bootstrap-navwalker.php';
+
+include_once get_template_directory() . '/inc/class-kirki-installer-section.php';
+
+
+//include_once get_theme_file_path( '/inc/class-kirki-installer-section.php' );
